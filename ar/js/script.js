@@ -3,6 +3,7 @@
   //////////////////////////////////////////////////////////////////////////////////
 
   // init renderer
+
   var renderer  = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
@@ -89,7 +90,8 @@
   // init controls for camera
   var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
     type : 'pattern',
-    patternUrl : 'img/patt.mrtn',
+    // patternUrl : 'img/patt.hiro',
+    patternUrl : 'img/patt.puremarker',
     // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
     // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
     // as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
@@ -103,14 +105,14 @@
   initTextures();
   initLights();
   onRenderFcts.push(function(delta){
-    // mesh.rotation.x += Math.PI*delta
+    wheel.rotation.y += Math.PI*delta
   })
 
   function initObjects(){
   var loader = new THREE.JSONLoader(); // init the loader util
 
   loader.load('img/wheel.js', function (geometry) {
-
+    console.log("loaded");
       wheel = new THREE.Mesh(geometry,subjMat);
       wheel.name = "wheel";
       wheel.scale.set(0.001,0.001,0.001);
@@ -167,7 +169,7 @@ function initLights(){
 
   // render the scene
   onRenderFcts.push(function(){
-    wheel.rotation.y -= 0.02
+      // wheel.rotation.z -= 0.02
 
     renderer.render( scene, camera );
   })
