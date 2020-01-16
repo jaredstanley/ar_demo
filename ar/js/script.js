@@ -105,7 +105,7 @@
   initTextures();
   initLights();
   onRenderFcts.push(function(delta){
-    wheel.rotation.y += Math.PI*delta
+    wheel.rotation.y += Math.PI*delta;
   })
 
   function initObjects(){
